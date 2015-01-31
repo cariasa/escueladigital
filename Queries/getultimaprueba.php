@@ -1,5 +1,5 @@
 <?php
-mysql_connect("mysql.freehostingnoads.net" , "u920472837_admin" , "kouta07anjira17");
+include 'dbconnect.php';
 $idsesion = mysql_real_escape_string($_POST['value']);
 $query = mysql_query("
 	SELECT `SesionProfesor`.`ID_Profesor` 

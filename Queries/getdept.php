@@ -1,5 +1,5 @@
 <?php
-mysql_connect("mysql.freehostingnoads.net" , "u920472837_admin" , "kouta07anjira17");
+include 'dbconnect.php';
 
 $query = mysql_query("SELECT  `Nombre` FROM  `u920472837_escuela`.`Departamento` ");
 
@@ -14,6 +14,6 @@ for ($i = 0; $i < $n; $i++) {
 		$result = "$result,$name";
 }
 
-echo "$result";
+echo "$dbconnected";
 
 ?>

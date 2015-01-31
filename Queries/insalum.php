@@ -1,5 +1,5 @@
 <?php
-mysql_connect("mysql.freehostingnoads.net" , "u920472837_admin" , "kouta07anjira17");
+include 'dbconnect.php';
 $datos = mysql_real_escape_string($_POST['value']);
 list( $idclase, $pnombre,  $snombre, $papellido, $sapellido ) = split('[,]', $datos);
 

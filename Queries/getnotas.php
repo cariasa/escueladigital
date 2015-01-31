@@ -1,5 +1,5 @@
 <?php
-mysql_connect("mysql.freehostingnoads.net" , "u920472837_admin" , "kouta07anjira17");
+include 'dbconnect.php';
 $idprueba = mysql_real_escape_string($_POST['value']);
 $query = mysql_query("
 	SELECT  `Alumno`.`P_Nombre` , `Alumno`.`S_Nombre` , `Alumno`.`P_Apellido` , `Alumno`.`S_Apellido` , 
