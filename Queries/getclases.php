@@ -3,9 +3,9 @@ include 'dbconnect.php';
 $idsesion = mysql_real_escape_string($_POST['value']);
 $query = mysql_query("
 	SELECT  `ID` ,  `Nombre`  
-	FROM  `u920472837_escuela`.`Clase` 
+	FROM  `$databaseName`.`Clase` 
 	WHERE  `ID_Profesor` =  ( SELECT  `ID_Profesor` 
-													 FROM  `u920472837_escuela`.`SesionProfesor` 
+													 FROM  `$databaseName`.`SesionProfesor` 
 													WHERE  `ID` = $idsesion  );
 ");
 $n = mysql_num_rows ( $query );

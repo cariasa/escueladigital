@@ -3,7 +3,7 @@ include 'dbconnect.php';
 $idprueba = mysql_real_escape_string($_POST['value']);
 $query = mysql_query("
 	SELECT  `Penalizacion` 
-	FROM  `u920472837_escuela`.`Prueba` 
+	FROM  `$databaseName`.`Prueba` 
 	WHERE  `ID` = $idprueba
 ");
 

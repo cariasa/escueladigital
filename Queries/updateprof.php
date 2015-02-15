@@ -4,7 +4,7 @@ $datos = mysql_real_escape_string($_POST['value']);
 list( $idalumno, $pnombre,  $snombre, $papellido, $sapellido , $celular ) = split('[,]', $datos);
 
 $query = mysql_query("
-	UPDATE  `u920472837_escuela`.`Profesor` 
+	UPDATE  `$databaseName`.`Profesor` 
 	SET  `P_Nombre` = '$pnombre',  
 	          `S_Nombre` = '$snombre' ,
 			  `P_Apellido` = '$papellido', 

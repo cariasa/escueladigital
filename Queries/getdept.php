@@ -1,7 +1,7 @@
 <?php
 include 'dbconnect.php';
 
-$query = mysql_query("SELECT  `Nombre` FROM  `u920472837_escuela`.`Departamento` ");
+$query = mysql_query("SELECT  `Nombre` FROM  `$databaseName`.`Departamento` ");
 
 $n = mysql_num_rows ( $query );
 $result = "";

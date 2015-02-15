@@ -7,9 +7,9 @@ list($nameescuela,  $direccionescuela, $departamento, $distrito,
       $snombre, $papellido, $sapellido ) = split('[,]', $value);
 	  
 $query = mysql_query("
-	SELECT `u920472837_escuela`.`Director`.`ID` 
-	FROM `u920472837_escuela`.`Director` 
-	WHERE `u920472837_escuela`.`Director`.`E_mail_Director` = '$emaildir'
+	SELECT `$databaseName`.`Director`.`ID` 
+	FROM `$databaseName`.`Director` 
+	WHERE `$databaseName`.`Director`.`E_mail_Director` = '$emaildir'
 ");	
 $n = mysql_num_rows ( $query );
 if( $n != 0 )
@@ -20,9 +20,9 @@ else
 { 	  
 
 	$query = mysql_query("
-		SELECT `u920472837_escuela`.`Profesor`.`ID`
-		FROM `u920472837_escuela`.`Profesor` 
-		WHERE `u920472837_escuela`.`Profesor`.`E_mail` = '$emaildir'
+		SELECT `$databaseName`.`Profesor`.`ID`
+		FROM `$databaseName`.`Profesor` 
+		WHERE `$databaseName`.`Profesor`.`E_mail` = '$emaildir'
 	");	
 	$n = mysql_num_rows ( $query );
 	if( $n != 0 )
@@ -32,21 +32,21 @@ else
 	else
 	{
 		$query = mysql_query("
-			INSERT INTO  `u920472837_escuela`.`Director` 
+			INSERT INTO  `$databaseName`.`Director` 
 				(`ID` ,`Nombre_Escuela` ,`Direccion_Escuela` ,`ID_Distrito` ,`Telefono_Escuela` ,`E_mail_Director` ,
 				 `Celular` ,`Password` ,`Numero_Id` ,`P_Nombre` ,`S_Nombre` ,`P_Apellido` ,`S_Apellido` , `Valido` )
 			 VALUES ( NULL ,  '$nameescuela',  '$direccionescuela',(SELECT  `ID` 
-																	FROM  `u920472837_escuela`.`Distrito` 
+																	FROM  `$databaseName`.`Distrito` 
 																	WHERE `Nombre` =  '$distrito' and 
 																		  `ID_Departamento` = (SELECT `ID` 
-																							   FROM  `u920472837_escuela`.`Departamento` 
+																							   FROM  `$databaseName`.`Departamento` 
 																							   WHERE  `Nombre` =  '$departamento')),                   
 							 '$telescuela',  '$emaildir',  '$celular', '$pass',  '$numid',  '$pnombre',  '$snombre',  '$papellido',  '$sapellido' , 0 );
 		");
 		$query = mysql_query("
-			SELECT `u920472837_escuela`.`Director`.`ID` 
-			FROM `u920472837_escuela`.`Director` 
-			WHERE `u920472837_escuela`.`Director`.`E_mail_Director` = '$emaildir'
+			SELECT `$databaseName`.`Director`.`ID` 
+			FROM `$databaseName`.`Director` 
+			WHERE `$databaseName`.`Director`.`E_mail_Director` = '$emaildir'
 		");	
 		$n = mysql_num_rows ( $query );
 		if( $n != 0 )

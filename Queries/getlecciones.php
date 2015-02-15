@@ -3,7 +3,7 @@ include 'dbconnect.php';
 $idalumno = mysql_real_escape_string($_POST['value']);
 $query = mysql_query("
 	SELECT `Prueba`.`ID` , `Leccion`.`NLeccion` , `Unidad`.`NUnidad` , `Libro`.`Nombre` , `Prueba`.`Fecha`
-	FROM `u920472837_escuela`.`Prueba` ,  `u920472837_escuela`.`Alumno` ,  `u920472837_escuela`.`Leccion` , `u920472837_escuela`.`Unidad`  , `u920472837_escuela`.`Libro` 
+	FROM `$databaseName`.`Prueba` ,  `$databaseName`.`Alumno` ,  `$databaseName`.`Leccion` , `$databaseName`.`Unidad`  , `$databaseName`.`Libro` 
 	WHERE `Prueba`.`ID_Alumno` = $idalumno AND
 	                `Prueba`.`ID_Alumno` = `Alumno` .`ID` AND
 					`Prueba`.`ID_Leccion` = `Leccion`.`ID` AND

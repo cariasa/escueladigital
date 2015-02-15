@@ -1,11 +1,11 @@
 <?php
 include 'dbconnect.php';
 $value = mysql_real_escape_string($_POST['value']);
-$query = mysql_query("SELECT  `u920472837_escuela`.`Distrito`.`Nombre` 
-FROM  `u920472837_escuela`.`Distrito` 
-WHERE  `u920472837_escuela`.`Distrito`.`ID_Departamento` = (
-SELECT  `u920472837_escuela`.`Departamento`.`ID` 
-FROM  `u920472837_escuela`.`Departamento` 
+$query = mysql_query("SELECT  `$databaseName`.`Distrito`.`Nombre` 
+FROM  `$databaseName`.`Distrito` 
+WHERE  `$databaseName`.`Distrito`.`ID_Departamento` = (
+SELECT  `$databaseName`.`Departamento`.`ID` 
+FROM  `$databaseName`.`Departamento` 
 WHERE  `Departamento`.`Nombre` =  '$value'
 )");
 

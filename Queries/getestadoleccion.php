@@ -3,7 +3,7 @@ include 'dbconnect.php';
 $code = mysql_real_escape_string($_POST['value']);
 
 $query = mysql_query("
-	SELECT `Prueba`.`Cerrada` FROM `u920472837_escuela`.`Prueba` WHERE  `Prueba`.`ID` = '$code';
+	SELECT `Prueba`.`Cerrada` FROM `$databaseName`.`Prueba` WHERE  `Prueba`.`ID` = '$code';
 ");	
 
 $n = mysql_num_rows ( $query );

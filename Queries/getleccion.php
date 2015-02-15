@@ -10,10 +10,10 @@ $query = mysql_query("
 					  `Leccion`.`NLeccion` , 
 					  `Unidad`.`NUnidad` , 
 					  `Prueba`.`ID`
-	FROM `u920472837_escuela`.`Prueba` , 
-	             `u920472837_escuela`.`Alumno` , 
-				 `u920472837_escuela`.`Leccion` , 
-				 `u920472837_escuela`.`Unidad`
+	FROM `$databaseName`.`Prueba` , 
+	             `$databaseName`.`Alumno` , 
+				 `$databaseName`.`Leccion` , 
+				 `$databaseName`.`Unidad`
 	WHERE `Prueba`.`Codigo` = '$codigo' AND 
 	                `Prueba`.`Valido` = 1 AND 
 		            `Alumno`.`ID` = `Prueba`.`ID_Alumno` AND

@@ -6,7 +6,7 @@ $alumnos = split('[;]', $datos);
 
 $query = mysql_query("
 	SELECT `Clase`.`ID` 
-	FROM  `u920472837_escuela`.`Clase` 
+	FROM  `$databaseName`.`Clase` 
 	WHERE `Clase`.`ID_Profesor` = $alumnos[0]  AND `Clase`.`Nombre` = '$alumnos[1] '
 ");	
 
@@ -16,13 +16,13 @@ if( $n != 0 )
 else
 {
 	$query = mysql_query("
-		INSERT INTO  `u920472837_escuela`.`Clase` ( `ID` , `Nombre` , `ID_Profesor` )
+		INSERT INTO  `$databaseName`.`Clase` ( `ID` , `Nombre` , `ID_Profesor` )
 		VALUES ( NULL ,  '$alumnos[1]', $alumnos[0] );
 	");	
 
 	$query = mysql_query("
 		SELECT `Clase`.`ID` 
-		FROM  `u920472837_escuela`.`Clase` 
+		FROM  `$databaseName`.`Clase` 
 		WHERE `Clase`.`ID_Profesor` = $alumnos[0]  AND `Clase`.`Nombre` = '$alumnos[1] ' 
 	");	
 
@@ -33,14 +33,14 @@ else
 		list($pnombre,$snombre,$papellido,$sapellido) = split( '[,]', $alumnos[$i] );
 		
 		$query = mysql_query("
-			INSERT INTO  `u920472837_escuela`.`Alumno` ( `ID` , `P_Nombre` , `S_Nombre` , `P_Apellido` , `S_Apellido` , `ID_Clase` )
+			INSERT INTO  `$databaseName`.`Alumno` ( `ID` , `P_Nombre` , `S_Nombre` , `P_Apellido` , `S_Apellido` , `ID_Clase` )
 			VALUES ( NULL ,  '$pnombre',  '$snombre',  '$papellido',  '$sapellido', $idclase  );
 		");	
 	}
 
 	/*Verificar si se insertaron los alumnos*/
 	$query = mysql_query("
-			SELECT `Alumno`.`ID` FROM `u920472837_escuela`.`Alumno` WHERE  `Alumno`.`ID_Clase` = $idclase;
+			SELECT `Alumno`.`ID` FROM `$databaseName`.`Alumno` WHERE  `Alumno`.`ID_Clase` = $idclase;
 	");	
 
 	$n = mysql_num_rows ( $query );

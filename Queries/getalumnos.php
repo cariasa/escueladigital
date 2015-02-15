@@ -3,7 +3,7 @@ include 'dbconnect.php';
 $idclase = mysql_real_escape_string($_POST['value']);
 $query = mysql_query("
 	SELECT `Alumno`.`ID` , `Alumno`.`P_Nombre`  ,`Alumno`.`S_Nombre`  , `Alumno`.`P_Apellido`  , `Alumno`.`S_Apellido` 
-	FROM `u920472837_escuela`.`Alumno` 
+	FROM `$databaseName`.`Alumno` 
 	WHERE  `Alumno`.`ID_Clase` = $idclase
 	
 ");

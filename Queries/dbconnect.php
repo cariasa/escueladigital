@@ -1,3 +1,4 @@
 <?php
-	mysql_connect("http://fia.unitec.edu:2232" , "root" , "root");
+	//mysql_connect("http://fia.unitec.edu:2232" , "root" , "root");
+	$databaseName = "escuela";
 ?>

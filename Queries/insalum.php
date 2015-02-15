@@ -5,18 +5,18 @@ list( $idclase, $pnombre,  $snombre, $papellido, $sapellido ) = split('[,]', $da
 
 $query = mysql_query("
 	SELECT * 
-	FROM `u920472837_escuela`.`Alumno`;
+	FROM `$databaseName`.`Alumno`;
 ");
 $n1 = mysql_num_rows ( $query );
 
 $query = mysql_query("
-	INSERT INTO  `u920472837_escuela`.`Alumno` ( `ID` , `P_Nombre` , `S_Nombre` , `P_Apellido` , `S_Apellido` , `ID_Clase` )
+	INSERT INTO  `$databaseName`.`Alumno` ( `ID` , `P_Nombre` , `S_Nombre` , `P_Apellido` , `S_Apellido` , `ID_Clase` )
 	VALUES ( NULL ,  '$pnombre',  '$snombre',  '$papellido',  '$sapellido',  $idclase );
 ");
 
 $query = mysql_query("
 	SELECT * 
-	FROM `u920472837_escuela`.`Alumno`;
+	FROM `$databaseName`.`Alumno`;
 ");
 $n2 = mysql_num_rows ( $query );
 

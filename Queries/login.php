@@ -5,7 +5,7 @@ $value = mysql_real_escape_string($_POST['value']);
 
 list($correo,  $password ) = split('[,]', $value);
 $query = mysql_query(
-	"SELECT  `ID` FROM  `u920472837_escuela`.`Director` 
+	"SELECT  `ID` FROM  `$databaseName`.`Director` 
     WHERE  `E_mail_Director` = '$correo' AND  `Password` =  '$password' AND `Valido` = 1"
 );
 
@@ -14,7 +14,7 @@ $n = mysql_num_rows ( $query );
 if( $n == 0 )
 {
 	$query = mysql_query("
-		SELECT `ID` FROM  `u920472837_escuela`.`Profesor`
+		SELECT `ID` FROM  `$databaseName`.`Profesor`
 		WHERE  `Password` =  '$password' AND  `E_mail` =  '$correo' AND `Valido` = 1 "
 	);
 	$n = mysql_num_rows ( $query );
@@ -23,25 +23,25 @@ if( $n == 0 )
 	else
 	{
 		$query = mysql_query("
-			SELECT `u920472837_escuela`.`SesionProfesor`.`ID` 
-			FROM  `u920472837_escuela`.`SesionProfesor` 
-			WHERE  `Activa` = 1 AND `ID_Profesor` = ( SELECT `u920472837_escuela`.`Profesor`.`ID` 
-																					FROM `u920472837_escuela`.`Profesor` 
+			SELECT `$databaseName`.`SesionProfesor`.`ID` 
+			FROM  `$databaseName`.`SesionProfesor` 
+			WHERE  `Activa` = 1 AND `ID_Profesor` = ( SELECT `$databaseName`.`Profesor`.`ID` 
+																					FROM `$databaseName`.`Profesor` 
 								                                                    WHERE  `E_mail` = '$correo' AND  `Password` =  '$password' )");
 		$n = mysql_num_rows ( $query );
 		if( $n == 0 )
 		{
 			$query = mysql_query("
-				INSERT INTO  `u920472837_escuela`.`SesionProfesor` ( `ID` , `ID_Profesor` , `Activa` ,`Fecha` ) 
+				INSERT INTO  `$databaseName`.`SesionProfesor` ( `ID` , `ID_Profesor` , `Activa` ,`Fecha` ) 
 				VALUES ( NULL ,  ( SELECT  `ID`
-												FROM  `u920472837_escuela`.`Profesor` 
+												FROM  `$databaseName`.`Profesor` 
 												WHERE  `E_mail` = '$correo' 
 							AND  `Password` =  '$password'),  '1',  curDate() );");
 			$query = mysql_query("
-				SELECT `u920472837_escuela`.`SesionProfesor`.`ID` 
-				FROM  `u920472837_escuela`.`SesionProfesor` 
-				WHERE  `Activa` = 1 AND `ID_Profesor` = ( SELECT `u920472837_escuela`.`Profesor`.`ID` 
-																						FROM `u920472837_escuela`.`Profesor` 
+				SELECT `$databaseName`.`SesionProfesor`.`ID` 
+				FROM  `$databaseName`.`SesionProfesor` 
+				WHERE  `Activa` = 1 AND `ID_Profesor` = ( SELECT `$databaseName`.`Profesor`.`ID` 
+																						FROM `$databaseName`.`Profesor` 
 																						WHERE  `E_mail` = '$correo' AND  `Password` =  '$password' )");
 			$codigo = mysql_result($query , 0 , 0);
 			echo "RROFESOR$codigo";
@@ -56,24 +56,24 @@ if( $n == 0 )
 else
 {
 	$query = mysql_query("
-		SELECT `u920472837_escuela`.`SesionDirector`.`ID` 
-		FROM  `u920472837_escuela`.`SesionDirector` 
-		WHERE  `Activa` = 1 AND `ID_Director` = ( SELECT `u920472837_escuela`.`Director`.`ID` 
-		                                                                        FROM `u920472837_escuela`.`Director` 
+		SELECT `$databaseName`.`SesionDirector`.`ID` 
+		FROM  `$databaseName`.`SesionDirector` 
+		WHERE  `Activa` = 1 AND `ID_Director` = ( SELECT `$databaseName`.`Director`.`ID` 
+		                                                                        FROM `$databaseName`.`Director` 
 																				WHERE  `E_mail_Director` = '$correo' AND  `Password` =  '$password' )");
 	$n = mysql_num_rows ( $query );
 	if( $n == 0 )
 	{								
 		$query = mysql_query("
-			INSERT INTO  `u920472837_escuela`.`SesionDirector` ( `ID` , `ID_Director` , `Activa` ,`Fecha` ) 
+			INSERT INTO  `$databaseName`.`SesionDirector` ( `ID` , `ID_Director` , `Activa` ,`Fecha` ) 
 			VALUES ( NULL ,  ( SELECT  `ID` 
-											FROM  `u920472837_escuela`.`Director` 
+											FROM  `$databaseName`.`Director` 
 											WHERE  `E_mail_Director` = '$correo'  AND  `Password` =  '$password'),  '1', curDate() );");
 		$query = mysql_query("
-			SELECT `u920472837_escuela`.`SesionDirector`.`ID` 
-			FROM  `u920472837_escuela`.`SesionDirector` 
-			WHERE  `Activa` = 1 AND `ID_Director` = ( SELECT `u920472837_escuela`.`Director`.`ID` 
-																					FROM `u920472837_escuela`.`Director` 
+			SELECT `$databaseName`.`SesionDirector`.`ID` 
+			FROM  `$databaseName`.`SesionDirector` 
+			WHERE  `Activa` = 1 AND `ID_Director` = ( SELECT `$databaseName`.`Director`.`ID` 
+																					FROM `$databaseName`.`Director` 
 																					WHERE  `E_mail_Director` = '$correo' AND  `Password` =  '$password' )");
 		$codigo = mysql_result($query , 0 , 0);
 		echo "DIRECTOR$codigo";

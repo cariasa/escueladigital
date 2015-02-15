@@ -9,7 +9,7 @@ $result = "";
 for( $i = 0; $i < count( $codes ) ; $i++ )
 {
 	$query = mysql_query("
-		SELECT `Prueba`.`ID`  FROM  `u920472837_escuela`.`Prueba`  WHERE  `Codigo` =  '$codes[$i]' AND  `Valido` =  1
+		SELECT `Prueba`.`ID`  FROM  `$databaseName`.`Prueba`  WHERE  `Codigo` =  '$codes[$i]' AND  `Valido` =  1
 	");	
 
 	$n = mysql_num_rows ( $query );

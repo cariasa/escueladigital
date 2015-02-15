@@ -6,7 +6,7 @@ list($idprueba,  $score , $correctas , $incorrectas , $ayudas ) = split('[,]', $
 
 $query = mysql_query("
 	SELECT  `Prueba`.`ID` 
-	FROM `u920472837_escuela`.`Prueba` 
+	FROM `$databaseName`.`Prueba` 
 	WHERE  `Prueba`.`ID` = $idprueba AND `Valido` =  1;
 ");	
 
@@ -19,7 +19,7 @@ if( $n == 0 )
 else
 {
 	$query = mysql_query("
-		UPDATE  `u920472837_escuela`.`Prueba` 
+		UPDATE  `$databaseName`.`Prueba` 
 		SET `Puntuacion` =  $score,
 				`Correctas` =  $correctas,
 				`Incorrectas` =  $incorrectas,

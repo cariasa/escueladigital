@@ -3,9 +3,9 @@ include 'dbconnect.php';
 $id = mysql_real_escape_string($_POST['value']);
 
 		$query = mysql_query("
-			SELECT `u920472837_escuela`.`Profesor`.`E_mail`
-			FROM `u920472837_escuela`.`Profesor` 
-			WHERE `u920472837_escuela`.`Profesor`.`ID` = $id;
+			SELECT `$databaseName`.`Profesor`.`E_mail`
+			FROM `$databaseName`.`Profesor` 
+			WHERE `$databaseName`.`Profesor`.`ID` = $id;
 		");	
 		
 		$n = mysql_num_rows ( $query );
